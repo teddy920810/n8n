@@ -3,6 +3,7 @@ services:
     name: n8n
     env: node
     buildCommand: |
+      export NODE_OPTIONS="--max-old-space-size=4096"
       corepack enable
       corepack prepare pnpm@8.6.12 --activate
       pnpm install --frozen-lockfile
@@ -13,6 +14,8 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 18
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=4096
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_CONNECTION_URL
